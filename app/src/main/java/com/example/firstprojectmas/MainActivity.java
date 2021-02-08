@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
     Button registerButton;
     Button clearButton;
     TextView currentStoreDisplay;
+    DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
+
+        //mDatabase = FirebaseDatabase.getInstance().getReference();
 
         storeInput = (EditText) findViewById(R.id.editStoreName);
         registerButton = (Button) findViewById(R.id.button_register);
@@ -69,8 +74,10 @@ public class MainActivity extends AppCompatActivity {
                         currentStoreDisplay.setText(name);
                         break;
                 }
+
                 if (storesRegistered <= 8) {
                     storesRegistered++;
+                    //mDatabase.child("companies").child(name).setValue(name);
                 }
             }
         });
@@ -142,4 +149,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*firebase data*/
+
+
+
+
+
+
 }
